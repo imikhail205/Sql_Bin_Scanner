@@ -40,6 +40,7 @@ TABLE_NAME = '[SISP].[dbo].[номинал_микросхемы]'
 ID_COLUMN = '[key]'                         # Имя колонки с первичным ключом
 INFO_COLUMN = '[номинал_микросхемы]'
 BINARY_COLUMN = '[Datasheet_микросхемы]'    # Имя колонки, где лежат PDF
+FlASH = '[flash_memory]'
 
 def start_search():
     try:
@@ -47,7 +48,7 @@ def start_search():
         cursor = conn.cursor()
         
         print("Запрос к базе данных...")
-        cursor.execute(f"SELECT top 100 {INFO_COLUMN}, {BINARY_COLUMN} FROM {TABLE_NAME}")
+        cursor.execute(f"SELECT {INFO_COLUMN}, {BINARY_COLUMN} FROM {TABLE_NAME} WHERE ({FlASH} = 0) or ({FlASH} is null)")
         
         found_ids = []
         # Перед циклом обнуляем счетчики
