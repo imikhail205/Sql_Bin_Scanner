@@ -27,14 +27,14 @@ conn_str = (
 
 # --- ЧТО ИЩЕМ ---
 KEYWORDS = [
-'flash', 
-'eprom', 
-'eeprom', 
-'fram', 
-'feram', 
-'mram', 
-'nvram', 
-'nvsram'
+' flash ', 
+' eprom ', 
+' eeprom ', 
+' fram ', 
+' feram ', 
+' mram ', 
+' nvram ', 
+' nvsram '
 ] # Добавьте свои слова (в нижнем регистре)
 TABLE_NAME = '[SISP].[dbo].[номинал_микросхемы]'
 ID_COLUMN = '[key]'                         # Имя колонки с первичным ключом
@@ -47,7 +47,7 @@ def start_search():
         cursor = conn.cursor()
         
         print("Запрос к базе данных...")
-        cursor.execute(f"SELECT {INFO_COLUMN}, {BINARY_COLUMN} FROM {TABLE_NAME}")
+        cursor.execute(f"SELECT top 100 {INFO_COLUMN}, {BINARY_COLUMN} FROM {TABLE_NAME}")
         
         found_ids = []
         # Перед циклом обнуляем счетчики
